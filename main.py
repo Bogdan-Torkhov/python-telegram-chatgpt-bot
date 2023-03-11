@@ -34,7 +34,7 @@ async def welcome_command(message: types.Message):
 
 @dp.message_handler()
 async def send(message: types.Message):
-    await update(messages, "user", message.text)
+    update(messages, "user", message.text)
     openai.api_key = os.getenv("API_KEY_OPENAI")
 
     response = openai.ChatCompletion.create(
