@@ -38,7 +38,7 @@ async def send(message: types.Message):
     openai.api_key = os.getenv("API_KEY_OPENAI")
 
     response = openai.ChatCompletion.create(
-        model="gpt-4",
+        model="gpt-3.5-turbo",
         messages=messages
     )
 
