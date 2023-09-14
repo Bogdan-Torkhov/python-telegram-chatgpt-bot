@@ -32,10 +32,13 @@ async def welcome_command(message: types.Message):
 @dp.message_handler()
 async def send(message: types.Message):
     update(message.from_user.id, "user", message.text)
-    openai.api_key = os.getenv("API_KEY_OPENAI")
-
+    openai.api_type = 'azure'
+    openai.api_key = os.getenv("AZURE_OPENAI_KEY")
+    openai.api_base = os.getenv("AZURE_OPENAI_ENDPOINT")
+    deployment_name = 'deep-deusbog'
+    openai.api_version = '2023-05-15'
     response = openai.ChatCompletion.create(
-        model="gpt-4",
+        engine="deep-deusbog",
         messages=user_messages[message.from_user.id]
     )
     user_messages[message.from_user.id].append({
